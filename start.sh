@@ -49,7 +49,7 @@ install_packages()
         if ! dpkg-query -W -f='${Status}' "$PACKAGE" 2>/dev/null | grep "install ok installed" > /dev/null; then
             echo "$PACKAGE is not installed. Installing..."
 
-            sudo apt install -y "$PACKAGE"
+            sudo apt-get install -y "$PACKAGE"
 
             if [ $? -eq 0 ]; then
                 echo ""
@@ -71,18 +71,10 @@ install_packages()
         libstdc++-11-dev
         gcc-multilib
         g++-multilib
-        libssl-dev
-        libcairo2-dev
-        libx264-dev
-        libswscale-dev
-        libavcodec-dev
-        libavutil-dev
-        libavformat-dev
-        librsvg2-dev
-        libgdk-pixbuf2.0-dev
-        libgtk-3-dev
-        libavfilter-dev
-        libnuma-dev
+                
+        libboost-iostreams-dev
+        libboost-system-dev
+        libboost-filesystem-dev
     )
 
     # Aktualizacja listy pakietów
@@ -154,9 +146,9 @@ create_my_libraries()
 
 #####################   START   #####################
 
-install_packages
-
 env_prep
+
+install_packages
 
 create_my_libraries
 

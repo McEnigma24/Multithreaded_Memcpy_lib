@@ -7,11 +7,13 @@ if(NOT CMAKE_BUILD_TYPE)
     set(CMAKE_BUILD_TYPE Release)
 endif()
 
-# set(LIBRARY_PATH_BMP ${CMAKE_CURRENT_SOURCE_DIR}/external/BMP_lib/build/)
+find_package(OpenMP REQUIRED)
 
-# link_directories(${LIBRARY_PATH_BMP})
+set(LIBRARY_PATH_TIMERS ${CMAKE_CURRENT_SOURCE_DIR}/external/Timers_lib/build/)
 
-include_directories(_inc _inc/base) # external/BMP_lib/_inc
+link_directories(${LIBRARY_PATH_TIMERS})
+
+include_directories(_inc _inc/base external/Timers_lib/_inc)
 aux_source_directory(_src SOURCES)
 aux_source_directory(_src/base SOURCES)
 
@@ -30,7 +32,7 @@ aux_source_directory(_test TEST_SOURCES)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fopenmp -g -Wfatal-errors -Werror=uninitialized -Werror=init-self -Werror=reorder")    # for normal coding
 # set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fopenmp -O3 -march=native -w")                                                         # for release
 
-set(CONST_TARGET_NAME "TEMPLATE")
+set(CONST_TARGET_NAME "Multithreaded_Memcpy")
 
 option(BUILD_LIBRARY "Build library instead of library executable" OFF)
 
@@ -39,19 +41,19 @@ if(BUILD_LIBRARY)
     add_library(${TARGET_NAME} SHARED ${SOURCES})
     target_compile_definitions(${TARGET_NAME} PRIVATE LINUX)
     set_target_properties(${TARGET_NAME} PROPERTIES COMPILE_FLAGS "-m64" LINK_FLAGS "-m64")
-    # target_link_libraries
-    # (
-    #     # ${LIBRARY_PATH_BMP}/libBMP.so
-    # )
+    target_link_libraries(${TARGET_NAME} PUBLIC 
+        OpenMP::OpenMP_CXX
+        ${LIBRARY_PATH_TIMERS}/libTimers.so
+    )
 else()
     set(TARGET_NAME "${CONST_TARGET_NAME}.exe")
     add_executable(${TARGET_NAME} ${SOURCES})
     target_compile_definitions(${TARGET_NAME} PRIVATE LINUX BUILD_EXECUTABLE)
     set_target_properties(${TARGET_NAME} PROPERTIES COMPILE_FLAGS "-m64" LINK_FLAGS "-m64")
-    # target_link_libraries
-    # (
-    #     # ${LIBRARY_PATH_BMP}/libBMP.so
-    # )
+    target_link_libraries(${TARGET_NAME} PUBLIC 
+        OpenMP::OpenMP_CXX
+        ${LIBRARY_PATH_TIMERS}/libTimers.so
+    )
 endif()
 
 option(CTEST_ACTIVE "Testing is active" OFF)
