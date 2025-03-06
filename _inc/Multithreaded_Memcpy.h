@@ -49,7 +49,7 @@ namespace Multithreaded_Memcpy
         }
     }
 
-    u64 check_how_many_thread_get_fastest_time(const size_t byte_size)
+    u64 check_how_many_threads_get_fastest_time(const size_t byte_size)
     {
         Nano_Timer::Timer t;
         u64 smallest_time = -1;

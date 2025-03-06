@@ -99,6 +99,59 @@ namespace CORE
     void clear_terminal();
     u64 convert_2d_to_1d(u64 x, u64 y, u64 WIDTH);
 
+    template <typename T>
+    string format_number(T number)
+    {
+        std::string str = std::to_string(number);
+
+        // Sprawdzenie, czy liczba jest zmiennoprzecinkowa
+        size_t dot_pos = str.find('.');
+        if (dot_pos != std::string::npos)
+        {
+            // Oddziel część przed kropką
+            std::string integer_part = str.substr(0, dot_pos);
+            std::string fractional_part = str.substr(dot_pos + 1);
+
+            // Formatowanie części całkowitej
+            std::string formatted_integer;
+            int count = 0;
+            for (int i = integer_part.length() - 1; i >= 0; --i)
+            {
+                formatted_integer.insert(formatted_integer.begin(), integer_part[i]);
+                count++;
+                if (count == 3 && i != 0)
+                {
+                    formatted_integer.insert(formatted_integer.begin(), '`');
+                    count = 0;
+                }
+            }
+
+            // Złożenie wyniku
+            return formatted_integer + "." + fractional_part;
+        }
+        else
+        {
+            // Jeśli liczba jest całkowita
+            std::string integer_part = str;
+
+            // Formatowanie części całkowitej
+            std::string formatted_integer;
+            int count = 0;
+            for (int i = integer_part.length() - 1; i >= 0; --i)
+            {
+                formatted_integer.insert(formatted_integer.begin(), integer_part[i]);
+                count++;
+                if (count == 3 && i != 0)
+                {
+                    formatted_integer.insert(formatted_integer.begin(), '`');
+                    count = 0;
+                }
+            }
+
+            return formatted_integer;
+        }
+    }
+
     namespace str
     {
         std::vector<std::string> split_string(const std::string& input, char delimiter);
