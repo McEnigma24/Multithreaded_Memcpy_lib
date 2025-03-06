@@ -49,7 +49,7 @@ namespace Multithreaded_Memcpy
         }
     }
 
-    void check_how_many_thread_get_fastest_time(const size_t byte_size)
+    u64 check_how_many_thread_get_fastest_time(const size_t byte_size)
     {
         Nano_Timer::Timer t;
         u64 smallest_time = -1;
@@ -71,7 +71,7 @@ namespace Multithreaded_Memcpy
             }
 
             u64 time = t.get_all_in_nano();
-            cout << setw(2) << i << ": " << setw(18) << time << "\n";
+            // cout << setw(2) << i << ": " << setw(18) << time << "\n";
 
             if (time < smallest_time)
             {
@@ -82,6 +82,8 @@ namespace Multithreaded_Memcpy
             t.reset();
         }
 
-        cout << "The winner for byte_size " << byte_size << " is " << smallest_thread_num << "\n";
+        // cout << "The winner for byte_size " << byte_size << " is " << smallest_thread_num << "\n";
+
+        return smallest_thread_num;
     }
 }; // namespace Multithreaded_Memcpy

@@ -10,7 +10,9 @@ int main(int argc, char* argv[])
     time_stamp("It just works");
 
     const int size_bytes = sizeof(int) * 230000;
-    Multithreaded_Memcpy::check_how_many_thread_get_fastest_time(size_bytes);
+    int smallest_thread_num = Multithreaded_Memcpy::check_how_many_thread_get_fastest_time(size_bytes);
+
+    cout << "The winner for byte_size " << size_bytes << " is " << smallest_thread_num << "\n";
 
     return 0;
 }
