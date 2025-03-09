@@ -1,6 +1,6 @@
-#include "Multithreaded_Memcpy.h"
-#include "__preprocessor__.h"
+// clang-format off
 #include <gtest/gtest.h>
+#include "Multithreaded_Memcpy.h"
 
 int random_number() { return rand() % 10000; }
 
@@ -17,10 +17,8 @@ TEST(Memcpy, sanity_check)
 
     memcpy(tab_dest, tab_src, size_bytes);
 
-    for (int i = 0; i < size; i++)
-    {
-        EXPECT_EQ(tab_src[i], tab_dest[i]);
-    }
+
+    EXPECT_TRUE(memcmp(tab_src, tab_dest, size_bytes));
 }
 
 TEST(Memcpy, my_memcpy_1)
@@ -34,12 +32,9 @@ TEST(Memcpy, my_memcpy_1)
     int tab_dest[size];
     memset(tab_dest, 0, size_bytes);
 
-    Multithreaded_Memcpy::cpy(tab_dest, tab_src, size, size_bytes, 1);
+    Multithreaded_Memcpy::cpy(tab_dest, tab_src, size_bytes, 1);
 
-    for (int i = 0; i < size; i++)
-    {
-        EXPECT_EQ(tab_src[i], tab_dest[i]);
-    }
+    EXPECT_TRUE(memcmp(tab_src, tab_dest, size_bytes));
 }
 
 TEST(Memcpy, my_memcpy_2)
@@ -53,12 +48,9 @@ TEST(Memcpy, my_memcpy_2)
     int tab_dest[size];
     memset(tab_dest, 0, size_bytes);
 
-    Multithreaded_Memcpy::cpy(tab_dest, tab_src, size, size_bytes, 2);
+    Multithreaded_Memcpy::cpy(tab_dest, tab_src, size_bytes, 2);
 
-    for (int i = 0; i < size; i++)
-    {
-        EXPECT_EQ(tab_src[i], tab_dest[i]);
-    }
+    EXPECT_TRUE(memcmp(tab_src, tab_dest, size_bytes));
 }
 
 TEST(Memcpy, my_memcpy_2_5001)
@@ -72,12 +64,9 @@ TEST(Memcpy, my_memcpy_2_5001)
     int tab_dest[size];
     memset(tab_dest, 0, size_bytes);
 
-    Multithreaded_Memcpy::cpy(tab_dest, tab_src, size, size_bytes, 2);
+    Multithreaded_Memcpy::cpy(tab_dest, tab_src, size_bytes, 2);
 
-    for (int i = 0; i < size; i++)
-    {
-        EXPECT_EQ(tab_src[i], tab_dest[i]);
-    }
+    EXPECT_TRUE(memcmp(tab_src, tab_dest, size_bytes));
 }
 
 TEST(Memcpy, my_memcpy_3)
@@ -91,12 +80,9 @@ TEST(Memcpy, my_memcpy_3)
     int tab_dest[size];
     memset(tab_dest, 0, size_bytes);
 
-    Multithreaded_Memcpy::cpy(tab_dest, tab_src, size, size_bytes, 3);
+    Multithreaded_Memcpy::cpy(tab_dest, tab_src, size_bytes, 3);
 
-    for (int i = 0; i < size; i++)
-    {
-        EXPECT_EQ(tab_src[i], tab_dest[i]);
-    }
+    EXPECT_TRUE(memcmp(tab_src, tab_dest, size_bytes));
 }
 
 TEST(Memcpy, my_memcpy_7)
@@ -110,12 +96,9 @@ TEST(Memcpy, my_memcpy_7)
     int tab_dest[size];
     memset(tab_dest, 0, size_bytes);
 
-    Multithreaded_Memcpy::cpy(tab_dest, tab_src, size, size_bytes, 7);
+    Multithreaded_Memcpy::cpy(tab_dest, tab_src, size_bytes, 7);
 
-    for (int i = 0; i < size; i++)
-    {
-        EXPECT_EQ(tab_src[i], tab_dest[i]);
-    }
+    EXPECT_TRUE(memcmp(tab_src, tab_dest, size_bytes));
 }
 
 TEST(Memcpy, my_memcpy_7_1)
@@ -129,12 +112,9 @@ TEST(Memcpy, my_memcpy_7_1)
     int tab_dest[size];
     memset(tab_dest, 0, size_bytes);
 
-    Multithreaded_Memcpy::cpy(tab_dest, tab_src, size, size_bytes, 7);
+    Multithreaded_Memcpy::cpy(tab_dest, tab_src, size_bytes, 7);
 
-    for (int i = 0; i < size; i++)
-    {
-        EXPECT_EQ(tab_src[i], tab_dest[i]);
-    }
+    EXPECT_TRUE(memcmp(tab_src, tab_dest, size_bytes));
 }
 
 int main(int argc, char** argv)
