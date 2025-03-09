@@ -5,7 +5,7 @@
 
 namespace Multithreaded_Memcpy
 {
-    void cpy_checks(void* dest, void* src, const size_t byte_size, const int thread_count)
+    void cpy_checks(char* dest, char* src, const size_t byte_size, const int thread_count)
     {
         if (nullptr == dest) { FATAL_ERROR("nullptr in dest"); }
         if (nullptr == src) { FATAL_ERROR("nullptr in src"); }
@@ -13,15 +13,15 @@ namespace Multithreaded_Memcpy
         if (thread_count <= 0) { FATAL_ERROR("INVALID thread count"); }
     }
 
-    void cpy(void* dest, void* src, const size_t byte_size, const int thread_count)
+    void cpy(char* dest, char* src, const size_t byte_size, const int thread_count)
     {
         cpy_checks(dest, src, byte_size, thread_count);
 
         const int chunk_byte_size = byte_size / thread_count;
         const int chunk_byte_size_additional = byte_size % thread_count;
 
-        void* dest_tab[thread_count];
-        void* src_tab[thread_count];
+        char* dest_tab[thread_count];
+        char* src_tab[thread_count];
 
         for (int i = 0; i < thread_count; i++)
         {
