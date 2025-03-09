@@ -34,7 +34,7 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fopenmp -g -Wfatal-errors -Werror=unini
 
 set(CONST_TARGET_NAME "Multithreaded_Memcpy")
 
-option(BUILD_LIBRARY "Build library instead of library executable" OFF)
+option(BUILD_LIBRARY "Build library instead of library executable" ON)
 
 if(BUILD_LIBRARY)
     set(TARGET_NAME "${CONST_TARGET_NAME}")
@@ -56,7 +56,7 @@ else()
     )
 endif()
 
-option(CTEST_ACTIVE "Testing is active" ON)
+option(CTEST_ACTIVE "Testing is active" OFF)
 
 if(CTEST_ACTIVE)
 
@@ -69,7 +69,8 @@ if(CTEST_ACTIVE)
     # Dodanie testów
     set(TEST_EXE_NAME "test.texe")  # Nazwa binarki testowej
     add_executable(${TEST_EXE_NAME} ${TEST_SOURCES})
-    target_link_libraries(${TEST_EXE_NAME} PRIVATE gtest_main
+    target_link_libraries(${TEST_EXE_NAME} PRIVATE
+        gtest_main
         ${LIBRARY_PATH_TIMERS}/libTimers.so
     )
 

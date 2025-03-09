@@ -9,10 +9,10 @@ int main(int argc, char* argv[])
     // CORE::clear_terminal(); // test might no be visible
     time_stamp("It just works");
 
-    // const int size_bytes = sizeof(int) * 230000;
-    // int smallest_thread_num = Multithreaded_Memcpy::check_how_many_threads_get_fastest_time(size_bytes);
+    const int size_bytes = sizeof(int) * 230000;
+    int smallest_thread_num = Multithreaded_Memcpy::check_how_many_threads_get_fastest_time(size_bytes);
 
-    // cout << "The winner for byte_size " << CORE::format_number(size_bytes) << " is " << smallest_thread_num << "\n";
+    cout << "The winner for byte_size " << CORE::format_number(size_bytes) << " is " << smallest_thread_num << "\n";
 
     return 0;
 }
