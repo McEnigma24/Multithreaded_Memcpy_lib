@@ -18,7 +18,7 @@ TEST(Memcpy, sanity_check)
     memcpy(tab_dest, tab_src, size_bytes);
 
 
-    EXPECT_TRUE(memcmp(tab_src, tab_dest, size_bytes));
+    EXPECT_EQ(memcmp(tab_src, tab_dest, size_bytes), 0);
 }
 
 TEST(Memcpy, my_memcpy_1)
@@ -34,7 +34,7 @@ TEST(Memcpy, my_memcpy_1)
 
     Multithreaded_Memcpy::cpy(tab_dest, tab_src, size_bytes, 1);
 
-    EXPECT_TRUE(memcmp(tab_src, tab_dest, size_bytes));
+    EXPECT_EQ(memcmp(tab_src, tab_dest, size_bytes), 0);
 }
 
 TEST(Memcpy, my_memcpy_2)
@@ -50,7 +50,7 @@ TEST(Memcpy, my_memcpy_2)
 
     Multithreaded_Memcpy::cpy(tab_dest, tab_src, size_bytes, 2);
 
-    EXPECT_TRUE(memcmp(tab_src, tab_dest, size_bytes));
+    EXPECT_EQ(memcmp(tab_src, tab_dest, size_bytes), 0);
 }
 
 TEST(Memcpy, my_memcpy_2_5001)
@@ -66,7 +66,7 @@ TEST(Memcpy, my_memcpy_2_5001)
 
     Multithreaded_Memcpy::cpy(tab_dest, tab_src, size_bytes, 2);
 
-    EXPECT_TRUE(memcmp(tab_src, tab_dest, size_bytes));
+    EXPECT_EQ(memcmp(tab_src, tab_dest, size_bytes), 0);
 }
 
 TEST(Memcpy, my_memcpy_3)
@@ -82,7 +82,7 @@ TEST(Memcpy, my_memcpy_3)
 
     Multithreaded_Memcpy::cpy(tab_dest, tab_src, size_bytes, 3);
 
-    EXPECT_TRUE(memcmp(tab_src, tab_dest, size_bytes));
+    EXPECT_EQ(memcmp(tab_src, tab_dest, size_bytes), 0);
 }
 
 TEST(Memcpy, my_memcpy_7)
@@ -98,7 +98,7 @@ TEST(Memcpy, my_memcpy_7)
 
     Multithreaded_Memcpy::cpy(tab_dest, tab_src, size_bytes, 7);
 
-    EXPECT_TRUE(memcmp(tab_src, tab_dest, size_bytes));
+    EXPECT_EQ(memcmp(tab_src, tab_dest, size_bytes), 0);
 }
 
 TEST(Memcpy, my_memcpy_7_1)
@@ -114,7 +114,7 @@ TEST(Memcpy, my_memcpy_7_1)
 
     Multithreaded_Memcpy::cpy(tab_dest, tab_src, size_bytes, 7);
 
-    EXPECT_TRUE(memcmp(tab_src, tab_dest, size_bytes));
+    EXPECT_EQ(memcmp(tab_src, tab_dest, size_bytes), 0);
 }
 
 int main(int argc, char** argv)

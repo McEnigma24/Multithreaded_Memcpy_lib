@@ -56,7 +56,7 @@ else()
     )
 endif()
 
-option(CTEST_ACTIVE "Testing is active" OFF)
+option(CTEST_ACTIVE "Testing is active" ON)
 
 if(CTEST_ACTIVE)
 
@@ -69,7 +69,9 @@ if(CTEST_ACTIVE)
     # Dodanie testów
     set(TEST_EXE_NAME "test.texe")  # Nazwa binarki testowej
     add_executable(${TEST_EXE_NAME} ${TEST_SOURCES})
-    target_link_libraries(${TEST_EXE_NAME} PRIVATE gtest_main)
+    target_link_libraries(${TEST_EXE_NAME} PRIVATE gtest_main
+        ${LIBRARY_PATH_TIMERS}/libTimers.so
+    )
 
     # Rejestracja testów
     include(GoogleTest)
