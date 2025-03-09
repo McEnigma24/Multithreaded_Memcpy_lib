@@ -56,8 +56,8 @@ namespace Multithreaded_Memcpy
         u64 smallest_time = -1;
         u64 smallest_thread_num = 0;
 
-        void* src = malloc(byte_size);
-        void* dest = malloc(byte_size);
+        char* src = (char*)malloc(byte_size);
+        char* dest = (char*)malloc(byte_size);
 
         for (int i = 1; i <= 18; i++)
         {
