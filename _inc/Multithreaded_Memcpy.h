@@ -1,3 +1,4 @@
+#pragma once
 #include "Nano_Timer.h"
 #include "__preprocessor__.h"
 #include <omp.h>
