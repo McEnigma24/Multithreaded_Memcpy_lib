@@ -27,6 +27,14 @@ namespace Multithreaded_Memcpy
             var(thread_count);
             FATAL_ERROR("INVALID thread count");
         }
+        if (omp_get_active_level() != 0) // called from parallel section
+        {
+            if (OMP_NESTED == false)
+            {
+                FATAL_ERROR("OMP_NESTED == false, this limits threads and only one will be active, which will lead to incorrect memcpy operation    "
+                            "SET omp_set_nested(true), before first parallel section");
+            }
+        }
     }
 
     void cpy(char* dest, char* src, const size_t byte_size, const int thread_count)
