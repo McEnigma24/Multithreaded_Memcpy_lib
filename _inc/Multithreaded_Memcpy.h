@@ -29,7 +29,7 @@ namespace Multithreaded_Memcpy
         }
         if (omp_get_active_level() != 0) // called from parallel section
         {
-            if (OMP_NESTED == false)
+            if (omp_get_nested() == false)
             {
                 FATAL_ERROR("OMP_NESTED == false, this limits threads and only one will be active, which will lead to incorrect memcpy operation    "
                             "SET omp_set_nested(true), before first parallel section");
