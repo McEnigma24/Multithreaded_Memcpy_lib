@@ -7,10 +7,26 @@ namespace Multithreaded_Memcpy
 {
     void cpy_checks(char* dest, char* src, const size_t byte_size, const int thread_count)
     {
-        if (nullptr == dest) { FATAL_ERROR("nullptr in dest"); }
-        if (nullptr == src) { FATAL_ERROR("nullptr in src"); }
-        if (byte_size <= 0) { FATAL_ERROR("INVALID byte_size"); }
-        if (thread_count <= 0) { FATAL_ERROR("INVALID thread count"); }
+        if (nullptr == dest)
+        {
+            var(dest);
+            FATAL_ERROR("nullptr in dest");
+        }
+        if (nullptr == src)
+        {
+            var(src);
+            FATAL_ERROR("nullptr in src");
+        }
+        if (byte_size <= 0)
+        {
+            var(byte_size);
+            FATAL_ERROR("INVALID byte_size");
+        }
+        if (thread_count <= 0)
+        {
+            var(thread_count);
+            FATAL_ERROR("INVALID thread count");
+        }
     }
 
     void cpy(char* dest, char* src, const size_t byte_size, const int thread_count)
@@ -38,8 +54,9 @@ namespace Multithreaded_Memcpy
             }
         }
 
+        // clang-format off
         omp_set_num_threads(thread_count);
-#pragma omp parallel
+        #pragma omp parallel
         {
             int i = omp_get_thread_num();
             int local_chunk_byte_size = chunk_byte_size;
@@ -48,6 +65,7 @@ namespace Multithreaded_Memcpy
 
             memcpy(dest_tab[i], src_tab[i], local_chunk_byte_size);
         }
+        // clang-format on
     }
 
     u64 check_how_many_threads_get_fastest_time(const size_t byte_size)
