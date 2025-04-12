@@ -6,7 +6,7 @@
 int main(int argc, char* argv[])
 {
     srand(time(NULL));
-    // CORE::clear_terminal(); // test might no be visible
+    // CORE::clear_terminal(); // tests might not be visible
     time_stamp("It just works");
 
     const int size_bytes = sizeof(int) * 230000;
