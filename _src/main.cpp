@@ -10,9 +10,12 @@ int main(int argc, char* argv[])
     time_stamp("It just works");
 
     const int size_bytes = sizeof(int) * 230000;
-    int smallest_thread_num = Multithreaded_Memcpy::check_how_many_threads_get_fastest_time(size_bytes);
+    int smallest_thread_num = Multithreaded_Memcpy::check_how_many_threads_get_fastest_time_std_memcpy(size_bytes);
 
-    cout << "The winner for byte_size " << CORE::format_number(size_bytes) << " is " << smallest_thread_num << "\n";
+    cout << "STD         -> The winner for byte_size " << CORE::format_number(size_bytes) << " is " << smallest_thread_num << "\n";
+
+    int smallest_thread_num_simd_stream = Multithreaded_Memcpy::check_how_many_threads_get_fastest_time_simd_stream_memcpy(size_bytes);
+    cout << "SIMD Stream -> The winner for byte_size " << CORE::format_number(size_bytes) << " is " << smallest_thread_num_simd_stream << "\n";
 
     return 0;
 }
